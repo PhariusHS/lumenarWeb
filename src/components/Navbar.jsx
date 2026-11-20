@@ -1,18 +1,13 @@
 import { Phone } from 'lucide-react';
+import { SITE_CONFIG, STYLE_CONFIG } from '../config/site';
 import logo from '../assets/logo-lumenar.png';
 
-// TODO: sustituir por el teléfono real. Formato internacional sin espacios en el href.
-const PHONE_DISPLAY = '000 000 000';
-const PHONE_HREF = 'tel:+000000000';
 
 const NAV_LINKS = [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Cómo trabajamos', href: '#confianza' },
     { label: 'FAQ', href: '#faq' }
 ];
-
-const focusRing =
-    'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand';
 
 export default function Navbar() {
     return (
@@ -21,7 +16,7 @@ export default function Navbar() {
                 <a
                     href="#inicio"
                     aria-label="LUMENAR, soluciones eléctricas — ir al inicio"
-                    className={`rounded-lg ${focusRing}`}
+                    className={`rounded-lg ${STYLE_CONFIG.FOCUS_RING}`}
                 > 
                     <img
                         src={logo}
@@ -42,7 +37,7 @@ export default function Navbar() {
                                         href={href}
                                         className={`relative inline-block py-2 text-[15px] font-semibold leading-[1.45] text-ink transition-colors hover:text-brand motion-reduce:transition-none
                       after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-brand after:transition-transform after:duration-200
-                      hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none ${focusRing}`}
+                      hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none ${STYLE_CONFIG.FOCUS_RING}`}
                                     >
                                         {label}
                                     </a>
@@ -54,11 +49,11 @@ export default function Navbar() {
 
                     {/*CALL BUTTON*/}
                     <a 
-                        href={PHONE_HREF}
-                        aria-label={`Llamar al ${PHONE_DISPLAY}`}
+                        href={SITE_CONFIG.PHONE_HREF}
+                        aria-label={`Llamar al ${SITE_CONFIG.PHONE_DISPLAY}`}
                         className={`inline-flex h-11 items-center justify-center gap-2 rounded-[14px] bg-brand px-5 text-base font-bold leading-[1.4]
                              text-surface transition duration-200 hover:bg-blue-800 
-                            active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 sm:h-[60px] sm:w-[210px] sm:px-0 ${focusRing}`}
+                            active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 sm:h-[60px] sm:w-[210px] sm:px-0 ${STYLE_CONFIG.FOCUS_RING}`}
                     >
                         <Phone className="size-[18px] shrink-0 sm:hidden" aria-hidden="true" />
                         <span className="sm:hidden">Llamar</span>
