@@ -12,12 +12,12 @@ const NAV_LINKS = [
 export default function Navbar() {
     return (
         <header className="sticky top-0 z-40 bg-surface">
-            <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-5 sm:h-24 sm:px-8 xl:px-0"> 
+            <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-5 sm:h-24 sm:px-8 xl:px-0">
                 <a
                     href="#inicio"
                     aria-label="LUMENAR, soluciones eléctricas — ir al inicio"
                     className={`rounded-lg ${STYLE_CONFIG.FOCUS_RING}`}
-                > 
+                >
                     <img
                         src={logo}
                         alt="LUMENAR"
@@ -25,8 +25,8 @@ export default function Navbar() {
                         height="35"
                         className="h-7 w-auto sm:h-[35px]"
                     />
-                </a> {/*LOGO LUMENAR */} 
-                
+                </a> {/*LOGO LUMENAR */}
+
                 <div className="flex items-center lg:gap-28">
                     {/*label container*/}
                     <nav aria-label="Principal" className="hidden lg:block">
@@ -44,11 +44,11 @@ export default function Navbar() {
                                 </li>
                             ))}
                         </ul>
-                    </nav> 
+                    </nav>
 
 
                     {/*CALL BUTTON*/}
-                    <a 
+                    <a
                         href={SITE_CONFIG.PHONE_HREF}
                         aria-label={`Llamar al ${SITE_CONFIG.PHONE_DISPLAY}`}
                         className={`inline-flex h-11 items-center justify-center gap-2 rounded-[14px] bg-brand px-5 text-base font-bold leading-[1.4]
