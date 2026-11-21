@@ -12,7 +12,9 @@ const NAV_LINKS = [
 export default function Navbar() {
     return (
         <header className="sticky top-0 z-40 bg-surface">
-            <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-5 sm:h-24 sm:px-8 xl:px-0">
+
+
+            <div className="mx-auto flex h-20 max-w-300 items-center justify-between px-5 sm:h-24 sm:px-8 xl:px-0">
                 <a
                     href="#inicio"
                     aria-label="LUMENAR, soluciones eléctricas — ir al inicio"
@@ -51,12 +53,12 @@ export default function Navbar() {
                     <a
                         href={SITE_CONFIG.PHONE_HREF}
                         aria-label={`Llamar al ${SITE_CONFIG.PHONE_DISPLAY}`}
-                        className={`inline-flex h-11 items-center justify-center gap-2 rounded-[14px] bg-brand px-5 text-base font-bold leading-[1.4]
+                        className={`inline-flex h-11 items-center justify-center gap-2 rounded-btn bg-brand px-5 text-base font-bold leading-[1.4]
                              text-surface transition duration-200 hover:bg-blue-800 
-                            active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 sm:h-[60px] sm:w-[210px] sm:px-0 ${STYLE_CONFIG.FOCUS_RING}`}
+                            active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 sm:h-15 sm:w-52.5 sm:px-0 ${STYLE_CONFIG.FOCUS_RING}`}
                     >
-                        <Phone className="size-[18px] shrink-0 sm:hidden" aria-hidden="true" />
-                        <span className="sm:hidden">Llamar</span>
+                        <Phone className="size-4.5 shrink-0 " aria-hidden="true" transform='translateZ(0)' />
+                        <span className="sm:hidden">Llamanos</span>
                         <span className="hidden sm:inline">{"LLAMANOS"}</span>
                     </a>
                 </div>
