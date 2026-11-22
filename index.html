@@ -1,14 +1,75 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/styles/style.css">
-    <title>lumenarwebsite</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#1d4ed8" />
+
+  <!-- SEO local · Galicia (Vigo, A Coruña, Santiago, Ourense, Pontevedra, Lugo, Ferrol). Sustituir dominio y datos de contacto -->
+  <title>Electricista en Galicia | Vigo, A Coruña, Santiago y Ourense</title>
+  <meta name="description"
+    content="Electricistas en Galicia: instalaciones, fallas, tableros y urgencias en Vigo, A Coruña, Santiago, Ourense, Pontevedra, Lugo y Ferrol. Presupuesto claro." />
+  <link rel="canonical" href="https://www.tudominio.com/" />
+  <!-- TODO CAMBIAR DOMINIO-->
+  <meta name="geo.region" content="ES-GA" />
+  <meta name="geo.placename" content="Galicia" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="LUMENAR · Soluciones eléctricas" />
+  <meta property="og:title" content="Electricista en Galicia | Vigo, A Coruña, Santiago y Ourense" />
+  <meta property="og:description"
+    content="Electricistas en Galicia: instalaciones, fallas, tableros y urgencias, con presupuesto antes de empezar." />
+  <meta property="og:url" content="https://www.tudominio.com/" />
+  <meta property="og:image" content="https://www.tudominio.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Plus Jakarta Sans (400, 500, 600, 700, 800) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Datos estructurados: negocio local -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Electrician",
+        "name": "LUMENAR · Soluciones eléctricas",
+        "url": "https://www.tudominio.com/",
+        "telephone": "+000000000",
+        "areaServed": [
+          { "@type": "City", "name": "Vigo" },
+          { "@type": "City", "name": "A Coruña" },
+          { "@type": "City", "name": "Santiago de Compostela" },
+          { "@type": "City", "name": "Ourense" },
+          { "@type": "City", "name": "Pontevedra" },
+          { "@type": "City", "name": "Lugo" },
+          { "@type": "City", "name": "Ferrol" },
+          { "@type": "AdministrativeArea", "name": "Galicia" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "[Ciudad base]",
+          "addressRegion": "Galicia",
+          "addressCountry": "ES"
+        },
+        "openingHours": "Mo-Fr [HH:MM-HH:MM]",
+        "makesOffer": [
+          "Electricidad domiciliaria",
+          "Electricidad de obra",
+          "Mantenimiento y montaje de paneles solares",
+          "Cámaras de seguridad"
+        ]
+      }
+    </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
