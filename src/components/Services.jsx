@@ -20,7 +20,7 @@ export default function Services() {
                     Soluciones eléctricas a tu medida.
                 </h2>
                 <p className="mt-4 max-w-275 text-lg leading-[1.45] text-slate-600">
-                    Electricidad domiciliaria y de obra, paneles solares y seguridad, ejecutados por profesionales matriculados bajo normativa vigente.
+                    Electricidad domiciliaria e industrial, paneles solares y seguridad, ejecutados por profesionales matriculados bajo normativa vigente.
                 </p>
 
                 {/*Service containers map */}
