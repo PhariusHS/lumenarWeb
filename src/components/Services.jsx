@@ -29,7 +29,7 @@ export default function Services() {
                         <article
                             key={id}
                             className={`group/card flex flex-col rounded-card border p-6 transition duration-200
-                                 motion-safe:hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(11,15,25,0.35)]
+                                 motion-safe:hover:-translate-y-1 hover:shadow-xl
                                   sm:p-7.75 md:min-h-110 ${s.card}`}
                         >
                             <div className="flex items-start justify-between gap-4">
