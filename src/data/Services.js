@@ -11,7 +11,7 @@ export const SERVICES = [
             'Todo lo eléctrico de tu casa, desde un enchufe que no funciona hasta el cambio completo del tablero. Llegamos, diagnosticamos y lo resolvemos con materiales de calidad.',
         items: [
             'Instalaciones y reformas',
-            'Fallas y cortocircuitos',
+            'Iluminacion',
             'Cambio y ampliación de tableros',
             'Urgencias eléctricas',
         ],

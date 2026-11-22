@@ -1,3 +1,4 @@
+import Faq from './components/FAQ'
 import Navbar from './components/Navbar'
 import Services from './components/Services'
 import TrustSection from './components/TrustSection'
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Services />
       <TrustSection />
+      <Faq />
     </>
   )
 }
