@@ -33,9 +33,10 @@ export const SERVICES = [
         eyebrow: 'Proyectos',
         title: 'Electricidad de obra',
         description:
-            'Instalación eléctrica completa para viviendas, locales y oficinas, desde cero y cumpliendo la normativa vigente.',
+            'Instalación eléctrica completa para viviendas, locales y oficinas, con firma de planos y certificación oficial.',
         items: [
             'Obra nueva y ampliaciones',
+            'Firma de planos y certificados de isntalación',
             'Viviendas, locales y oficinas',
             'Cableado, tableros y puesta en marcha',
         ],
@@ -54,15 +55,16 @@ export const SERVICES = [
         id: 'solar',
         Icon: Sprout,
         eyebrow: 'Energía solar',
-        title: 'Mantenimiento y montaje de paneles solares',
+        title: 'Instalación y mantenimiento de paneles solares',
         description:
             'Instalamos tus paneles y los mantenemos al máximo rendimiento para que produzcas tu propia energía y reduzcas tu factura de luz.',
         items: [
-            'Montaje e instalación completa',
+            'Montaje e instalación de paneles',
+            'Montaje e instalación de baterias',
             'Limpieza y revisión periódica',
             'Control de rendimiento y conexiones',
         ],
-        cta: 'Consultar por paneles solares',
+        cta: 'Consigue tus paneles solares',
         s: {
             card: 'border-solar-line bg-solar-bg',
             badge: 'bg-lime-500/15 text-lime-700',
@@ -74,12 +76,12 @@ export const SERVICES = [
         },
     },
     {
-        id: 'camaras',
+        id: 'seguridad',
         Icon: Cctv,
         eyebrow: 'Seguridad',
-        title: 'Cámaras de seguridad',
+        title: 'Sistemas de seguridad',
         description:
-            'Instalamos y configuramos sistemas de vigilancia para tu casa o tu negocio, con acceso desde el móvil para que estés tranquilo.',
+            'Instalamos y configuramos sistemas de vigilancia y alarma para tu casa o tu negocio, con acceso desde el móvil para que estés tranquilo.',
         items: [
             'Instalación y cableado',
             'Configuración y acceso desde el móvil',

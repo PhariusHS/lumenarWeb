@@ -8,8 +8,6 @@ import logo from '../assets/logo-lumenar.png';
 export default function Navbar() {
     return (
         <header className="sticky top-0 z-40 bg-surface">
-
-
             <div className="mx-auto flex h-20 max-w-300 items-center justify-between px-5 sm:h-24 sm:px-8 xl:px-0">
                 <a
                     href="#inicio"

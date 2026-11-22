@@ -12,14 +12,15 @@ export default function Services() {
                 <p className="text-[13px] font-bold uppercase leading-[1.45] text-brand">
                     Nuestros servicios
                 </p>
+
                 <h2
                     id="servicios-title"
                     className="mt-2 text-[1.75rem] font-extrabold leading-[1.2] text-ink sm:text-4xl"
                 >
-                    Cuatro servicios, un solo teléfono
+                    Soluciones eléctricas a tu medida.
                 </h2>
                 <p className="mt-4 max-w-275 text-lg leading-[1.45] text-slate-600">
-                    Elige lo que necesitas. Te respondemos con claridad, sin rodeos y sin formularios.
+                    Electricidad domiciliaria y de obra, paneles solares y seguridad, ejecutados por profesionales matriculados bajo normativa vigente.
                 </p>
 
                 {/*Service containers map */}
