@@ -1,13 +1,9 @@
 import { Phone } from 'lucide-react';
 import { SITE_CONFIG, STYLE_CONFIG } from '../config/site';
+import { NAV_LINKS } from '../data/Navbar';
 import logo from '../assets/logo-lumenar.png';
 
 
-const NAV_LINKS = [
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Cómo trabajamos', href: '#confianza' },
-    { label: 'FAQ', href: '#faq' }
-];
 
 export default function Navbar() {
     return (
@@ -57,7 +53,7 @@ export default function Navbar() {
                              text-surface transition duration-200 hover:bg-blue-800 
                             active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100 sm:h-15 sm:w-52.5 sm:px-0 ${STYLE_CONFIG.FOCUS_RING}`}
                     >
-                        <Phone className="size-4.5 shrink-0 " aria-hidden="true" transform='translateZ(0)' />
+                        <Phone className="size-4.5 shrink-0 " aria-hidden="true" />
                         <span className="sm:hidden">Llamanos</span>
                         <span className="hidden sm:inline">{"LLAMANOS"}</span>
                     </a>
