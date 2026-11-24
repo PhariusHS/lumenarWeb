@@ -28,7 +28,7 @@ export default function WorkCarousel() {
 
     return (
         <div
-            className="relative mx-auto w-full max-w-[490px] rounded-[32px] bg-[radial-gradient(195px_169px_at_70%_20%,rgba(6,182,212,0.35),transparent),linear-gradient(160deg,var(--color-ink),var(--color-night))] p-4 shadow-[0_30px_60px_rgba(11,15,25,0.25)] sm:p-5 lg:mx-0"
+            className="relative mx-auto w-full max-w-122.5 rounded-media bg-[radial-gradient(195px_169px_at_70%_20%,rgba(6,182,212,0.35),transparent),linear-gradient(160deg,var(--color-ink),var(--color-night))] p-4 shadow-[0_30px_60px_rgba(11,15,25,0.25)] sm:p-5 lg:mx-0"
             role="region"
             aria-roledescription="carrusel"
             aria-label="Trabajos de referencia"
@@ -37,12 +37,12 @@ export default function WorkCarousel() {
                 ref={trackRef}
                 onScroll={handleScroll}
                 tabIndex={0}
-                className={`relative flex h-[320px] snap-x snap-mandatory gap-4 overflow-x-auto rounded-[22px] [scrollbar-width:none] sm:h-[386px] [&::-webkit-scrollbar]:hidden ${STYLE_CONFIG.FOCUS_RING}`}
+                className={`relative flex h-80 snap-x snap-mandatory gap-4 overflow-x-auto rounded-card scrollbar-none sm:h-96.5 [&::-webkit-scrollbar]:hidden ${STYLE_CONFIG.FOCUS_RING}`}
             >
                 {SLIDES.map(({ id, label, alt, src, Icon }) => (
                     <figure
                         key={id}
-                        className="relative h-full w-[88%] shrink-0 snap-start overflow-clip rounded-[22px] sm:w-[404px]"
+                        className="relative h-full w-[88%] shrink-0 snap-start overflow-hidden rounded-card sm:w-101"
                     >
                         <img
                             src={src}
@@ -77,7 +77,7 @@ export default function WorkCarousel() {
                 ))}
             </div>
 
-            <div className="mt-4 flex items-center justify-between gap-3">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 sm:flex-nowrap">
                 <div className="pl-0.5">
                     <div className="flex items-center gap-1" role="group" aria-label="Seleccionar imagen">
                         {SLIDES.map(({ id, label }, i) => (
@@ -90,7 +90,7 @@ export default function WorkCarousel() {
                                 className={`grid h-4 place-items-center rounded-full ${STYLE_CONFIG.FOCUS_RING} ${active === i ? 'w-7' : 'w-4'}`}
                             >
                                 <span
-                                    className={`block h-[7px] rounded-full transition-all duration-200 motion-reduce:transition-none ${active === i ? 'w-6 bg-cyan-500' : 'w-[7px] bg-[#63738c]'
+                                    className={`block h-1.75 rounded-full transition-all duration-200 motion-reduce:transition-none ${active === i ? 'w-6 bg-cyan-500' : 'w-1.75 bg-[#63738c]'
                                         }`}
                                 />
                             </button>
@@ -101,8 +101,8 @@ export default function WorkCarousel() {
                     </p>
                 </div>
 
-                <p className="flex h-11 items-center gap-2.5 rounded-[14px] bg-surface px-4 text-sm font-extrabold text-ink drop-shadow-[0_12px_14px_rgba(0,0,0,0.3)]">
-                    <FileText className="size-[18px] text-brand" aria-hidden="true" />
+                <p className="ml-auto flex h-11 shrink-0 items-center gap-2.5 rounded-btn bg-surface px-4 text-sm font-extrabold text-ink drop-shadow-[0_12px_14px_rgba(0,0,0,0.3)]">
+                    <FileText className="size-4.5 text-brand" aria-hidden="true" />
                     Presupuesto sin sorpresas
                 </p>
             </div>

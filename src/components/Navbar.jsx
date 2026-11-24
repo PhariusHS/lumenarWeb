@@ -19,7 +19,7 @@ export default function Navbar() {
                         alt="LUMENAR"
                         width="200"
                         height="35"
-                        className="h-7 w-auto sm:h-[35px]"
+                        className="h-7 w-auto sm:h-8.75"
                     />
                 </a> {/*LOGO LUMENAR */}
 
