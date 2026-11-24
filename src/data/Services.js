@@ -3,17 +3,17 @@ import { Cctv, Lightbulb, Factory, Sprout } from 'lucide-react';
 
 export const SERVICES = [
     {
-        id: 'industrial',
-        Icon: Factory,
-        eyebrow: 'Industria y comercios',
-        title: 'Electricidad industrial',
+        id: 'domiciliaria',
+        Icon: Lightbulb,
+        eyebrow: 'Servicio principal',
+        title: 'Electricidad domiciliaria',
         description:
-            'Instalaciones eléctricas de potencia y control para naves, talleres y comercios, con firma de planos y certificación oficial.',
+            'Todo lo eléctrico de tu casa, desde un enchufe que no funciona hasta el cambio completo del tablero. Llegamos, diagnosticamos y lo resolvemos con materiales de calidad.',
         items: [
-            'Montaje industrial y ampliaciones de potencia',
-            'Firma de planos y certificados de instalación',
-            'Tableros seccionales, trifásica y automatización',
-            'Mantenimiento preventivo y puesta en marcha',
+            'Instalaciones y reformas',
+            'Iluminacion',
+            'Cambio y ampliación de tableros',
+            'Urgencias eléctricas',
         ],
         cta: 'Llamar por electricidad',
         s: {
@@ -28,19 +28,19 @@ export const SERVICES = [
 
     },
     {
-        id: 'obra',
+        id: 'industrial',
         Icon: Factory,
-        eyebrow: 'Proyectos',
+        eyebrow: 'Industria y comercios',
         title: 'Electricidad industrial',
         description:
-            'Instalación eléctrica completa para viviendas, locales y oficinas, con firma de planos y certificación oficial.',
+            'Instalaciones eléctricas de potencia y control para naves, talleres y comercios, con firma de planos y certificación oficial.',
         items: [
-            'Obra nueva y ampliaciones',
-            'Firma de planos y certificados de isntalación',
-            'Viviendas, locales y oficinas',
-            'Cableado, tableros y puesta en marcha',
+            'Montaje industrial y ampliaciones de potencia',
+            'Firma de planos y certificados de instalación',
+            'Tableros seccionales, trifásica y automatización',
+            'Mantenimiento preventivo y puesta en marcha',
         ],
-        cta: 'Pedir presupuesto por teléfono',
+        cta: 'Llamar por electricidad',
         s: {
             card: 'border-ink bg-ink',
             badge: 'bg-surface/10 text-cyan-300',
