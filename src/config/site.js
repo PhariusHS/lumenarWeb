@@ -29,3 +29,4 @@ export const STYLE_CONFIG = {
 
     EYEBROW: 'text-xs font-bold uppercase leading-[1.45] text-cyan-300'
 }
+
