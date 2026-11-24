@@ -5,7 +5,8 @@ import WorkCarousel from './WorkCarousel';
 export default function Hero() {
     return (
         <section id="inicio" aria-labelledby="hero-title" className="bg-surface-alt">
-            <div className="mx-auto grid max-w-300 items-center gap-12 px-5 py-12 sm:px-8 lg:grid-cols-[minmax(0,1fr)_490px] lg:gap-16 lg:py-16 xl:px-0">
+            <div className="mx-auto grid max-w-300 
+            items-center gap-12 px-5 py-12 sm:px-8 lg:grid-cols-[minmax(0,1fr)_490px] lg:gap-16 lg:py-16 xl:px-0">
                 <div>
                     <p className="inline-flex h-8.5 items-center rounded-full bg-brand-tint px-3.5 text-[11px] font-bold uppercase tracking-wide text-brand">
                         Electricistas en Galicia · Hogar y proyectos

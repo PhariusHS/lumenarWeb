@@ -1,38 +1,77 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  --color-ink: #0b0f19;          /* texto principal, fondos oscuros */
-  --color-surface: #fafafa;      /* fondo base */
-  --color-surface-alt: #f5f5f5;  /* secciones alternas */
-  --color-brand: #1d4ed8;        /* azul principal / CTA */
-  --color-brand-tint: #eaf2ff;   /* píldora del hero */
-  --color-line: #dce4ee;         /* bordes y separadores */
-  --color-night: #13204f;        /* final del degradado del carrusel */
-  --color-solar-bg: #f4fae9;     /* tarjeta energía solar */
+  --color-ink: #0b0f19;
+  /* texto principal, fondos oscuros */
+  --color-surface: #fafafa;
+  /* fondo base */
+  --color-surface-alt: #f5f5f5;
+  /* secciones alternas */
+  --color-brand: #1d4ed8;
+  /* azul principal / CTA */
+  --color-brand-tint: #eaf2ff;
+  /* píldora del hero */
+  --color-line: #dce4ee;
+  /* bordes y separadores */
+  --color-night: #13204f;
+  /* final del degradado del carrusel */
+  --color-solar-bg: #f4fae9;
+  /* tarjeta energía solar */
   --color-solar-line: #c5df9f;
 
-  --radius-btn: 14px;            /* botones */
-  --radius-card: 22px;           /* tarjetas de servicios */
-  --radius-card-sm: 18px;        /* tarjetas de confianza */
-  --radius-panel: 24px;          /* banner de contacto */
-  --radius-media: 32px;          /* carrusel del hero */
+  /* Pulso de los pines del mapa  */
+  --animate-pin-pulse: pin-pulse 2.6s ease-out infinite;
+
+
+  --radius-btn: 14px;
+  /* botones */
+  --radius-card: 22px;
+  /* tarjetas de servicios */
+  --radius-card-sm: 18px;
+  /* tarjetas de confianza */
+  --radius-panel: 24px;
+  /* banner de contacto */
+  --radius-media: 32px;
+  /* carrusel del hero */
+}
+
+@keyframes carousel-loop {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem; /* altura del header sticky */
+    scroll-padding-top: 6rem;
+    /* altura del header sticky */
   }
 
-  body {
-    @apply bg-surface font-sans text-ink antialiased;
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
+  /* Pulso de los pines del mapa  */
+  @keyframes pin-pulse {
+    0% {
+      opacity: 0.55;
+      transform: scale(0.6);
     }
+
+    80%,
+    100% {
+      opacity: 0;
+      transform: scale(1.9);
+    }
+  }
+}
+
+body {
+  @apply bg-surface font-sans text-ink antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
