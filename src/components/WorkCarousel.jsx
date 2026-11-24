@@ -1,111 +1,175 @@
-import { useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { FileText } from 'lucide-react';
 import { STYLE_CONFIG } from '../config/site';
 import { SLIDES } from '../data/CarouselSlides'
 
+function Slide({ slide, decorative = false }) {
+    const { label, alt, src, Icon } = slide;
+    return (
+        <figure
+            aria-hidden={decorative || undefined}
+            className="relative mr-4 h-full w-70 shrink-0 overflow-clip rounded-card sm:w-101"
+        >
+            <img
+                src={src}
+                alt={decorative ? '' : alt}
+                width="404"
+                height="386"
+                decoding="async"
+                draggable="false"
+                onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                }}
+                className="absolute inset-0 size-full object-cover"
+            />
+            <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,15,25,0.35)_0%,rgba(11,15,25,0)_35%,rgba(11,15,25,0)_68%,rgba(11,15,25,0.56)_100%)]"
+            />
+            <figcaption className="absolute left-4 top-4 flex h-11 items-center gap-2.5 rounded-full border border-surface/25 bg-ink/90 px-4 text-sm font-bold text-surface">
+                <span className="size-2.5 rounded-full bg-lime-500" aria-hidden="true" />
+                {label}
+            </figcaption>
+            <span
+                aria-hidden="true"
+                className="absolute right-4 top-4 grid size-12 place-items-center rounded-full bg-brand text-surface"
+            >
+                <Icon className="size-6" />
+            </span>
+            <span className="absolute bottom-4 left-4 inline-flex h-7 items-center rounded-lg bg-ink/90 px-3 text-[11px] font-bold text-surface">
+                Imagen de referencia
+            </span>
+        </figure>
+    );
+}
+
+const SPEED = 45; // píxeles por segundo
+
+/**
+ * Carrusel infinito en bucle, movido con React + requestAnimationFrame.
+ * - Las diapositivas se duplican y el desplazamiento se reinicia con módulo, sin saltos.
+ * - Se pausa con el cursor encima y mientras se arrastra (ratón o dedo).
+ * - Se pausa fuera de pantalla y con la pestaña oculta.
+ */
 export default function WorkCarousel() {
+    const viewportRef = useRef(null);
     const trackRef = useRef(null);
-    const [active, setActive] = useState(0);
 
-    const handleScroll = () => {
-        const el = trackRef.current;
-        if (!el || !el.children.length) return;
-        const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
-        const step = el.children[0].offsetWidth + gap;
-        const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
-        const index = atEnd
-            ? SLIDES.length - 1
-            : Math.min(SLIDES.length - 1, Math.round(el.scrollLeft / step));
-        setActive(index);
-    };
+    useEffect(() => {
+        const viewport = viewportRef.current;
+        const track = trackRef.current;
+        if (!viewport || !track) return undefined;
 
-    const goTo = (index) => {
-        const el = trackRef.current;
-        if (!el) return;
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        el.scrollTo({ left: el.children[index].offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
-    };
+        let offset = 0;
+        let loopWidth = 0;
+        let last = 0;
+        let raf = 0;
+        let hovering = false;
+        let dragging = false;
+        let inView = true;
+        let startX = 0;
+        let startOffset = 0;
+
+        const measure = () => {
+            loopWidth = track.offsetWidth / 2; // ancho de una tanda completa
+        };
+
+        const apply = () => {
+            if (loopWidth) offset = ((offset % loopWidth) + loopWidth) % loopWidth;
+            track.style.transform = `translate3d(${-offset}px,0,0)`;
+        };
+
+        const tick = (now) => {
+            const dt = last ? Math.min(now - last, 64) : 0;
+            last = now;
+            if (!hovering && !dragging && inView && !document.hidden) {
+                offset += (SPEED * dt) / 1000;
+                apply();
+            }
+            raf = requestAnimationFrame(tick);
+        };
+
+        const onPointerDown = (e) => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            dragging = true;
+            startX = e.clientX;
+            startOffset = offset;
+            viewport.setPointerCapture(e.pointerId);
+            viewport.style.cursor = 'grabbing';
+        };
+        const onPointerMove = (e) => {
+            if (!dragging) return;
+            offset = startOffset - (e.clientX - startX);
+            apply();
+        };
+        const onPointerEnd = () => {
+            dragging = false;
+            viewport.style.cursor = '';
+        };
+        const onEnter = (e) => {
+            if (e.pointerType === 'mouse') hovering = true;
+        };
+        const onLeave = () => {
+            hovering = false;
+        };
+
+        measure();
+        apply();
+
+        const resizeObserver = new ResizeObserver(measure);
+        resizeObserver.observe(track);
+        const intersectionObserver = new IntersectionObserver(([entry]) => {
+            inView = entry.isIntersecting;
+        });
+        intersectionObserver.observe(viewport);
+
+        viewport.addEventListener('pointerdown', onPointerDown);
+        viewport.addEventListener('pointermove', onPointerMove);
+        viewport.addEventListener('pointerup', onPointerEnd);
+        viewport.addEventListener('pointercancel', onPointerEnd);
+        viewport.addEventListener('pointerenter', onEnter);
+        viewport.addEventListener('pointerleave', onLeave);
+
+        raf = requestAnimationFrame(tick);
+
+        return () => {
+            cancelAnimationFrame(raf);
+            resizeObserver.disconnect();
+            intersectionObserver.disconnect();
+            viewport.removeEventListener('pointerdown', onPointerDown);
+            viewport.removeEventListener('pointermove', onPointerMove);
+            viewport.removeEventListener('pointerup', onPointerEnd);
+            viewport.removeEventListener('pointercancel', onPointerEnd);
+            viewport.removeEventListener('pointerenter', onEnter);
+            viewport.removeEventListener('pointerleave', onLeave);
+        };
+    }, []);
 
     return (
         <div
-            className="relative mx-auto w-full max-w-122.5 rounded-media bg-[radial-gradient(195px_169px_at_70%_20%,rgba(6,182,212,0.35),transparent),linear-gradient(160deg,var(--color-ink),var(--color-night))] p-4 shadow-[0_30px_60px_rgba(11,15,25,0.25)] sm:p-5 lg:mx-0"
+            className="relative mx-auto w-full sm:max-w-122.5 max-w-80 rounded-card 
+            sm:p-5 lg:mx-15 shadow-xs"
             role="region"
             aria-roledescription="carrusel"
             aria-label="Trabajos de referencia"
         >
             <div
-                ref={trackRef}
-                onScroll={handleScroll}
-                tabIndex={0}
-                className={`relative flex h-80 snap-x snap-mandatory gap-4 overflow-x-auto rounded-card scrollbar-none sm:h-96.5 [&::-webkit-scrollbar]:hidden ${STYLE_CONFIG.FOCUS_RING}`}
+                ref={viewportRef}
+                className="h-80 cursor-grab touch-pan-y select-none overflow-hidden rounded-card sm:h-96.5"
             >
-                {SLIDES.map(({ id, label, alt, src, Icon }) => (
-                    <figure
-                        key={id}
-                        className="relative h-full w-[88%] shrink-0 snap-start overflow-hidden rounded-card sm:w-101"
-                    >
-                        <img
-                            src={src}
-                            alt={alt}
-                            width="404"
-                            height="386"
-                            loading="lazy"
-                            decoding="async"
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                            }}
-                            className="absolute inset-0 size-full object-cover"
-                        />
-                        <div
-                            aria-hidden="true"
-                            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,15,25,0.35)_0%,rgba(11,15,25,0)_35%,rgba(11,15,25,0)_68%,rgba(11,15,25,0.56)_100%)]"
-                        />
-                        <figcaption className="absolute left-4 top-4 flex h-11 items-center gap-2.5 rounded-full border border-surface/25 bg-ink/90 px-4 text-sm font-bold text-surface">
-                            <span className="size-2.5 rounded-full bg-lime-500" aria-hidden="true" />
-                            {label}
-                        </figcaption>
-                        <span
-                            aria-hidden="true"
-                            className="absolute right-4 top-4 grid size-12 place-items-center rounded-full bg-brand text-surface"
-                        >
-                            <Icon className="size-6" />
-                        </span>
-                        <span className="absolute bottom-4 left-4 inline-flex h-7 items-center rounded-lg bg-ink/90 px-3 text-[11px] font-bold text-surface">
-                            Imagen de referencia
-                        </span>
-                    </figure>
-                ))}
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 sm:flex-nowrap">
-                <div className="pl-0.5">
-                    <div className="flex items-center gap-1" role="group" aria-label="Seleccionar imagen">
-                        {SLIDES.map(({ id, label }, i) => (
-                            <button
-                                key={id}
-                                type="button"
-                                onClick={() => goTo(i)}
-                                aria-label={`Ver ${label}`}
-                                aria-current={active === i}
-                                className={`grid h-4 place-items-center rounded-full ${STYLE_CONFIG.FOCUS_RING} ${active === i ? 'w-7' : 'w-4'}`}
-                            >
-                                <span
-                                    className={`block h-1.75 rounded-full transition-all duration-200 motion-reduce:transition-none ${active === i ? 'w-6 bg-cyan-500' : 'w-1.75 bg-[#63738c]'
-                                        }`}
-                                />
-                            </button>
+                <div ref={trackRef} className="flex h-full w-max will-change-transform">
+                    {SLIDES.map((slide) => (
+                        <Slide key={slide.id} slide={slide} />
+                    ))}
+                    {/* Segunda tanda, solo visual, para cerrar el bucle sin saltos */}
+                    <div className="flex h-full" aria-hidden="true">
+                        {SLIDES.map((slide) => (
+                            <Slide key={`${slide.id}-loop`} slide={slide} decorative />
                         ))}
                     </div>
-                    <p className="mt-1 text-[11px] font-bold leading-4 text-[#d6e0f0]">
-                        Desliza para ver más →
-                    </p>
                 </div>
-
-                <p className="ml-auto flex h-11 shrink-0 items-center gap-2.5 rounded-btn bg-surface px-4 text-sm font-extrabold text-ink drop-shadow-[0_12px_14px_rgba(0,0,0,0.3)]">
-                    <FileText className="size-4.5 text-brand" aria-hidden="true" />
-                    Presupuesto sin sorpresas
-                </p>
             </div>
+
         </div>
     );
 }
