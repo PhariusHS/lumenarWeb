@@ -48,7 +48,7 @@ export default function Hero() {
                     </ul>
 
                     <p className="mt-3.5 text-sm font-medium leading-[1.45] text-slate-500">
-                        Cobertura en toda Galicia: Vigo, A Coruña, Santiago, Ourense, Pontevedra y más
+                        Cobertura en Galicia: Vigo, Santiago, Ourense, Pontevedra y zona.
                     </p>
                 </div>
 

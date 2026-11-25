@@ -4,7 +4,7 @@ import { STYLE_CONFIG } from '../config/site';
 import { SLIDES } from '../data/CarouselSlides'
 
 function Slide({ slide, decorative = false }) {
-    const { label, alt, src, Icon } = slide;
+    const { label, subLabel, alt, src, Icon, SecondIcon } = slide;
     return (
         <figure
             aria-hidden={decorative || undefined}
@@ -26,6 +26,7 @@ function Slide({ slide, decorative = false }) {
                 aria-hidden="true"
                 className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,15,25,0.35)_0%,rgba(11,15,25,0)_35%,rgba(11,15,25,0)_68%,rgba(11,15,25,0.56)_100%)]"
             />
+
             <figcaption className="absolute left-4 top-4 flex h-11 items-center gap-2.5 rounded-full border border-surface/25 bg-ink/90 px-4 text-sm font-bold text-surface">
                 <span className="size-2.5 rounded-full bg-lime-500" aria-hidden="true" />
                 {label}
@@ -36,8 +37,18 @@ function Slide({ slide, decorative = false }) {
             >
                 <Icon className="size-6" />
             </span>
+
+            {SecondIcon ?
+
+                <span
+                    aria-hidden="true"
+                    className="absolute  right-16 sm:right-20 top-4 grid size-12 place-items-center rounded-full bg-brand text-surface"
+                >
+                    <SecondIcon className="size-6" />
+                </span>
+                : null}
             <span className="absolute bottom-4 left-4 inline-flex h-7 items-center rounded-lg bg-ink/90 px-3 text-[11px] font-bold text-surface">
-                Imagen de referencia
+                {subLabel}
             </span>
         </figure>
     );
